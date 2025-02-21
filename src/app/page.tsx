@@ -30,7 +30,7 @@ export default function Home() {
     return () => {
       root.classList.remove('dark');
     };
-  }, [flags.enableDarkMode, isMounted]); // Watch the actual flag value and mounting state
+  }, [flags.enableDarkMode, isMounted, isEnabled]); // Added isEnabled to dependency array
 
   // Don't render content until mounted to prevent hydration mismatch
   if (!isMounted) {

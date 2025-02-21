@@ -49,19 +49,62 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Usage Example
 
-The project demonstrates how to implement feature flags using the Flags SDK. Here's a basic example:
+The project implements three feature flags that demonstrate different aspects of feature flagging:
 
+1. **New Header Design** (`showNewHeader`):
 ```typescript
-import { flag } from '@vercel/flags/next';
+// Using the flag in a component
+import { useFlags } from '../context/FlagsContext';
 
-export const exampleFlag = flag({
-  key: "example-flag",
-  decide() {
-    // this flag will be on for 50% of visitors
-    return Math.random() > 0.5;
-  }
-});
+function MyComponent() {
+  const { isEnabled } = useFlags();
+  
+  return (
+    <>
+      {isEnabled('showNewHeader') && <NewHeader />}
+    </>
+  );
+}
 ```
+
+2. **Dark Mode** (`enableDarkMode`):
+```typescript
+// Dark mode implementation
+function App() {
+  const { isEnabled } = useFlags();
+  
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isEnabled('enableDarkMode')) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [isEnabled]);
+}
+```
+
+3. **Beta Features** (`betaFeatures`):
+```typescript
+// Conditional rendering of beta features
+function FeatureSection() {
+  const { isEnabled } = useFlags();
+  
+  return (
+    <>
+      {isEnabled('betaFeatures') && (
+        <div className="beta-feature">
+          <span className="beta-badge">BETA</span>
+          <h3>Experimental Features</h3>
+          {/* Beta feature content */}
+        </div>
+      )}
+    </>
+  );
+}
+```
+
+Each flag can be toggled through the UI, and the changes are persisted in localStorage. The flags are managed through a centralized `FlagsContext` that provides a consistent way to check and update feature flags throughout the application.
 
 ## Learn More
 

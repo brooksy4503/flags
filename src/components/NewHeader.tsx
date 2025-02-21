@@ -13,19 +13,19 @@ export function NewHeader() {
           
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
-              href="/" 
+              href="https://www.garthscaysbrook.com/" 
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
             >
               Home
             </Link>
             <Link 
-              href="/docs" 
+              href="https://flags-sdk.dev/" 
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
             >
               Documentation
             </Link>
             <Link 
-              href="/settings" 
+              href="#" 
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
             >
               Settings

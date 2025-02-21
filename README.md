@@ -1,9 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Feature Flags Demo
+
+This project demonstrates the integration and usage of [Flags SDK](https://flags-sdk.dev/) with [Next.js](https://nextjs.org). The Flags SDK is a powerful feature flags toolkit created by the team behind Next.js, allowing for seamless feature flag implementation in Next.js applications.
+
+## Features
+
+- Integration with Vercel's Flags SDK
+- Example feature flag implementations
+- Compatible with both App Router and Pages Router
+- Works with any flag provider or custom setups
+- Built-in support for experimentation
+
+## Prerequisites
+
+- Node.js 18.17 or later
+- npm, yarn, pnpm, or bun package manager
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+```bash
+git clone https://github.com/brooksy4503/flags.git
+cd flags
+```
 
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
@@ -16,21 +47,37 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage Example
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project demonstrates how to implement feature flags using the Flags SDK. Here's a basic example:
+
+```typescript
+import { flag } from '@vercel/flags/next';
+
+export const exampleFlag = flag({
+  key: "example-flag",
+  decide() {
+    // this flag will be on for 50% of visitors
+    return Math.random() > 0.5;
+  }
+});
+```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Flags SDK Documentation](https://flags-sdk.dev/) - Learn about Flags SDK features and capabilities
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API
+- [Learn Next.js](https://nextjs.org/learn) - Interactive Next.js tutorial
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new). When deployed on Vercel, you'll get additional features like:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Flags Explorer in the Vercel Toolbar
+- Automatic flag annotation in Runtime Logs
+- Integration with Web Analytics
+- Edge Config support for ultra-low latency flag evaluation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
